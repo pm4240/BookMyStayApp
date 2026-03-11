@@ -1,30 +1,60 @@
-public class BookMyStayApp {
-        public static void main(String[] args) {
+import java.util.HashMap;
+import java.util.Map;
 
-            // Create room objects
-            Room singleRoom = new SingleRoom();
-            Room doubleRoom = new DoubleRoom();
-            Room suiteRoom = new SuiteRoom();
+class RoomInventory {
 
-            // Availability stored as simple variables
-            int singleRoomAvailable = 5;
-            int doubleRoomAvailable = 3;
-            int suiteRoomAvailable = 2;
+    // HashMap to store room type and available count
+    private Map<String, Integer> inventory;
 
-            // Display room information
-            System.out.println("Hotel Room Availability\n");
+    // Constructor to initialize inventory
+    public RoomInventory() {
+        inventory = new HashMap<>();
 
-            singleRoom.displayRoomDetails();
-            System.out.println("Available: " + singleRoomAvailable);
-            System.out.println("---------------------");
+        // Register room types with initial availability
+        inventory.put("Standard", 10);
+        inventory.put("Deluxe", 5);
+        inventory.put("Suite", 2);
+    }
 
-            doubleRoom.displayRoomDetails();
-            System.out.println("Available: " + doubleRoomAvailable);
-            System.out.println("---------------------");
+    // Method to get availability of a specific room type
+    public int getAvailability(String roomType) {
+        return inventory.getOrDefault(roomType, 0);
+    }
 
-            suiteRoom.displayRoomDetails();
-            System.out.println("Available: " + suiteRoomAvailable);
+    // Method to update room availability
+    public void updateAvailability(String roomType, int newCount) {
+        inventory.put(roomType, newCount);
+    }
+
+    // Method to display current inventory state
+    public void displayInventory() {
+        System.out.println("Current Room Inventory:");
+
+        for (Map.Entry<String, Integer> entry : inventory.entrySet()) {
+            System.out.println(entry.getKey() + " : " + entry.getValue());
         }
+    }
+}
 
+public class BookMyStayApp {
 
+    public static void main(String[] args) {
+
+        // System initializes the inventory component
+        RoomInventory inventory = new RoomInventory();
+
+        // Display current inventory
+        inventory.displayInventory();
+
+        // Retrieve availability
+        System.out.println("\nAvailable Deluxe Rooms: " +
+                inventory.getAvailability("Deluxe"));
+
+        // Update availability
+        inventory.updateAvailability("Deluxe", 3);
+
+        // Display updated inventory
+        System.out.println("\nInventory After Update:");
+        inventory.displayInventory();
+    }
 }
