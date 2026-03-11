@@ -1,15 +1,30 @@
 public class BookMyStayApp {
         public static void main(String[] args) {
 
-            // Print welcome message
-            System.out.println("Welcome to the Hotel Booking System");
+            // Create room objects
+            Room singleRoom = new SingleRoom();
+            Room doubleRoom = new DoubleRoom();
+            Room suiteRoom = new SuiteRoom();
 
-            // Print application name and version
-            System.out.println("Application: Hotel Booking System");
-            System.out.println("Version: v1.0");
+            // Availability stored as simple variables
+            int singleRoomAvailable = 5;
+            int doubleRoomAvailable = 3;
+            int suiteRoomAvailable = 2;
 
-            // Inform that application started successfully
-            System.out.println("Application started successfully.");
+            // Display room information
+            System.out.println("Hotel Room Availability\n");
+
+            singleRoom.displayRoomDetails();
+            System.out.println("Available: " + singleRoomAvailable);
+            System.out.println("---------------------");
+
+            doubleRoom.displayRoomDetails();
+            System.out.println("Available: " + doubleRoomAvailable);
+            System.out.println("---------------------");
+
+            suiteRoom.displayRoomDetails();
+            System.out.println("Available: " + suiteRoomAvailable);
         }
+
 
 }
